@@ -52,6 +52,42 @@ const condenseMeetingTimes = (meetings) => {
   
 }
 
+const condenseMeetingTimesImproved = (times)=>{
+  let maxTime = 0;
+  let mergedTimes = [];
+  let result = [];
+  // Creating an array
+  for(let i = 0; i<times.length; i++){
+    maxTime = Math.max(maxTime, times[i].endTime);
+    for(let j = times[i].startTime; j < times[i].endTime; j++){
+      mergedTimes[j] = true;
+    }
+  }
+  mergedTimes.push(undefined);
+  
+  console.log(mergedTimes);
+  
+  for(let k = 0; k < mergedTimes.length -1 ; k++){
+    if(mergedTimes[k] === true){
+      let l = k+1;
+      let end = false
+      while(l < mergedTimes.length && !end ){
+        if(mergedTimes[l] === undefined){
+          end = true;
+        } else {
+         l++;
+        }
+      }
+      result.push({ startTime: k,  endTime: l });
+      // Set the begining to the end time
+      k=l;
+    }
+  }
+  
+  return result;
+  
+}
+
 const test1 = [[0, 1], [3, 5], [4, 8], [10, 12], [9, 10]];
 const test2 = [[1, 2], [2, 3]];
 const test3 = [[1, 5], [2, 3]];
