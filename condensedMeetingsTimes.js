@@ -75,7 +75,7 @@ const condenseMeetingTimesImproved = (times)=>{
         if(mergedTimes[l] === undefined){
           end = true;
         } else {
-         l++;
+          l++;
         }
       }
       result.push({ startTime: k,  endTime: l });
